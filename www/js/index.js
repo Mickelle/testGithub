@@ -29,7 +29,7 @@ var app = {
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
        dconsole.log("Test")
-      
+      changes from test branch
       
         //==
 
