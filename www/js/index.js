@@ -30,7 +30,7 @@ var app = {
         this.receivedEvent('deviceready');
        dconsole.log("Test")
       changes from test branch
-      
+      in test branch 2
         //==
 
      alert('myFunction start');
