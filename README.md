@@ -1,6 +1,9 @@
+
 # test_flutter_circle_ci
 
 A new Flutter project.
+
+[![CircleCI](https://circleci.com/gh/Mickelle/testGithub/tree/flutter-circleci.svg?style=svg)](https://circleci.com/gh/Mickelle/testGithub/tree/flutter-circleci)
 
 ## Getting Started
 
