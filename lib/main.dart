@@ -7,6 +7,9 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  const unusedVar = 'Delete Me';
+  final IncorrectNamingConvention = 'Incorrect Naming Convention';
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
