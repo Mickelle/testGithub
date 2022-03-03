@@ -3,10 +3,21 @@ jobs:
   build:
     docker:
       - image: cirrusci/flutter
+     - when:
+      condition:
+        - equal: [ XXXflutter-circlci, << pipeline.git.branch >> ]
     steps:
-      - checkout
-      - run: flutter doctor
-      - run: flutter analyze
-      - run: flutter test
+      - run: echo "Not CircleCI"  
+    - when:
+      condition:
+        - equal: [ flutter-circlci, << pipeline.git.branch >> ]
+    steps:
+      - run: echo "CircleCI branch"
+    # steps:
+    #   - checkout
+      
+    #   - run: flutter doctor
+    #   - run: flutter analyze
+    #   - run: flutter test
       # - run: flutter -v build apk
 # https://stackoverflow.com/questions/50789578/how-can-the-code-coverage-data-from-flutter-tests-be-displayed
