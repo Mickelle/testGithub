@@ -20,7 +20,7 @@ jobs:
           condition:
               equal: [ flutter-circleci, << pipeline.git.branch >> ]
           steps:
-              - run: echo "CircleCI Branch"
+              - run: echo << pipeline.git.branch >>
               - run: flutter test
 
 # https://stackoverflow.com/questions/50789578/how-can-the-code-coverage-data-from-flutter-tests-be-displayed
