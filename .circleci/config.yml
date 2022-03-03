@@ -12,7 +12,8 @@ jobs:
     #   - run: flutter -v build apk
       - when:
           condition:
-            not: [ XXXflutter-circlci, << pipeline.git.branch >> ]
+            not: 
+              equal: [ XXXflutter-circlci, << pipeline.git.branch >> ]
           steps:
             - run: echo "Not CircleCI"
             - run: flutter analyze
