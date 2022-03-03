@@ -1,7 +1,7 @@
 
 # test_flutter_circle_ci
 
-A new Flutter project.
+A new Flutter project XXX.
 
 [![CircleCI](https://circleci.com/gh/Mickelle/testGithub/tree/flutter-circleci.svg?style=svg)](https://circleci.com/gh/Mickelle/testGithub/tree/flutter-circleci)
 

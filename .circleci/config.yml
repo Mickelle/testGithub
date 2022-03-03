@@ -1,10 +1,12 @@
-version: 2.1
-orbs:
-  flutter: circleci/flutter@1.0
-workflows:
-  test:
-    jobs:
-      - flutter/lint:
-          version: 2.2.3
-      - flutter/unit_test:
-          version: 2.2.3    
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cirrusci/flutter
+    steps:
+      - checkout
+      - run: flutter doctor
+      - run: flutter analyze
+      - run: flutter test
+      # - run: flutter -v build apk
+# https://stackoverflow.com/questions/50789578/how-can-the-code-coverage-data-from-flutter-tests-be-displayed
