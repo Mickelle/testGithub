@@ -18,7 +18,7 @@ jobs:
             - run: flutter analyze
       - when:
           condition:
-              equal: [ flutter-circlci, << pipeline.git.branch >> ]
+              equal: [ flutter-circleci, << pipeline.git.branch >> ]
           steps:
               - run: echo "CircleCI Branch"
               - run: flutter test
