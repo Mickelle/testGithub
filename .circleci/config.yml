@@ -1,8 +1,8 @@
 version: 2.1
 jobs:
   build:
-    # machine:
-    #   image: ubuntu-2004:202010-01
+    machine:
+      image: ubuntu-2004:202010-01
     macos: # executor type
       xcode: "13.2.1"
     docker:
