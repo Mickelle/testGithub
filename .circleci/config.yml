@@ -1,14 +1,16 @@
 version: 2.1
 jobs:
   build:
-    macos: # executor type
-      xcode: "13.2.1"
+    macos:
+      xcode: 12.5.1
+    docker:
+      - image: cirrusci/flutter
     steps:
       - checkout
       
       - run: flutter doctor
-    #   - run: flutter analyze
-    #   - run: flutter test
+      - run: flutter analyze
+      - run: flutter test
     #   - run: flutter -v build apk
       - when:
           condition:
