@@ -5,6 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:test_flutter_circle_ci/providers/connectivity_provider.dart';
 import 'connectivity_test.mocks.dart';
+import 'package:provider/provider.dart';
+import 'package:test_flutter_circle_ci/main.dart';
 
 @GenerateMocks([Connectivity, ConnectivityProvider])
 void main() {
@@ -15,6 +17,12 @@ void main() {
     when(mockConnectivity.checkConnectivity()).thenAnswer((value) async {
       return ConnectivityResult.mobile;
     });
+
+    // await tester.pumpWidget(
+    //   Provider<ConnectivityProvider>(
+    //     child: main(),
+    //   ),
+    // );
     ConnectivityProvider connectivityProvider = ConnectivityProvider();
     expect(1 + 1, 2);
   });
