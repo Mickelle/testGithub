@@ -17,7 +17,7 @@ void main() {
     late ConnectivityProvider connectivityProvider;
 
     setUp(() {
-      mockConnectivity = MockConnectivity();
+      // mockConnectivity = MockConnectivity();
       // mockConnectivityProvider = MockConnectivityProvider();
       connectivityProvider = ConnectivityProvider();
     });
