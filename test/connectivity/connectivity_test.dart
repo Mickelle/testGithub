@@ -11,11 +11,12 @@ import 'connectivity_test.mocks.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MockConnectivity mockConnectivity = MockConnectivity();
-  ConnectivityProvider connectivityProvider = ConnectivityProvider();
+
   group('Test for connectivity', () {
     test(
       'Listening network connectivity changes',
       () async {
+        ConnectivityProvider connectivityProvider = ConnectivityProvider();
         expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
       },
     );
@@ -23,6 +24,7 @@ void main() {
     test('Testing CheckNetworkConnectivity method', () async {
       when(mockConnectivity.checkConnectivity())
           .thenAnswer((_) async => ConnectivityResult.wifi);
+      ConnectivityProvider connectivityProvider = ConnectivityProvider();
       expect(
         await connectivityProvider.checkNetworkConnectivity(),
         isA<ConnectivityResult>(),
@@ -40,6 +42,7 @@ void main() {
     });
 
     test('Clears/closes the stream subscription', () {
+      ConnectivityProvider connectivityProvider = ConnectivityProvider();
       connectivityProvider.clearConnectivityStream();
       expect(connectivityProvider.clearConnectivityStream, isA<void>());
     });
