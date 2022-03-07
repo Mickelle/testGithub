@@ -16,12 +16,12 @@ jobs:
               equal: [ XXXflutter-circlci, << pipeline.git.branch >> ]
           steps:
             - run: echo "Not CircleCI << pipeline.git.branch >>"
-            - run: flutter analyze
+            # - run: flutter analyze
       - when:
           condition:
             equal: [ flutter-circleci, << pipeline.git.branch >> ]
           steps:
             - run: echo << pipeline.git.branch >>
-            - run: flutter test
+            # - run: flutter test
 
 # https://stackoverflow.com/questions/50789578/how-can-the-code-coverage-data-from-flutter-tests-be-displayed

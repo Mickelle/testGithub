@@ -15,7 +15,7 @@ void main() {
     when(mockConnectivity.checkConnectivity()).thenAnswer((value) async {
       return ConnectivityResult.mobile;
     });
-
+    ConnectivityProvider connectivityProvider = ConnectivityProvider();
     expect(1 + 1, 2);
   });
 
