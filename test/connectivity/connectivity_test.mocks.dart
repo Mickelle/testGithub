@@ -11,8 +11,9 @@ import 'package:connectivity_plus_platform_interface/connectivity_plus_platform_
 import 'package:flutter/material.dart' as _i2;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:test_flutter_circle_ci/providers/connectivity_provider.dart'
+    as _i6;
 
-import './../../lib/providers/connectivity_provider.dart' as _i6;
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters

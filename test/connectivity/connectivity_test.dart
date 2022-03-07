@@ -3,8 +3,8 @@ import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:test_flutter_circle_ci/providers/connectivity_provider.dart';
 
-import './../../lib/providers/connectivity_provider.dart';
 import 'connectivity_test.mocks.dart';
 
 @GenerateMocks([Connectivity, ConnectivityProvider])
