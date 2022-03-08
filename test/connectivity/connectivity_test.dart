@@ -57,12 +57,13 @@ void main() {
     test('Test ddd', () async {
       expect(1 + 1, 2);
     });
-    // test(
-    //   'Listening network connectivity changes',
-    //   () async {
-    //     expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
-    //   },
-    // );
+
+    test(
+      'Listening network connectivity changes',
+      () async {
+        expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
+      },
+    );
 
     test('Testing CheckNetworkConnectivity method', () async {
       expect(
