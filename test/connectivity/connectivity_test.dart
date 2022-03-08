@@ -17,7 +17,7 @@ void main() {
     when(mockConnectivity.checkConnectivity()).thenAnswer((value) async {
       return ConnectivityResult.mobile;
     });
-    ConnectivityProvider connectivityProvider = ConnectivityProvider();
+    // ConnectivityProvider connectivityProvider = ConnectivityProvider();
     // await tester.pumpWidget(
     //   Provider<ConnectivityProvider>(
     //     child: main(),
@@ -28,13 +28,13 @@ void main() {
     expect(1 + 1, 2);
   });
 
-  // test(
-  //   'Listening network connectivity changes',
-  //   () async {
-  //     ConnectivityProvider connectivityProvider = ConnectivityProvider();
-  //     expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
-  //   },
-  // );
+  test(
+    'Listening network connectivity changes',
+    () async {
+      ConnectivityProvider connectivityProvider = ConnectivityProvider();
+      expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
+    },
+  );
 
   // test('Testing CheckNetworkConnectivity method', () async {
   //   when(mockConnectivity.checkConnectivity())
