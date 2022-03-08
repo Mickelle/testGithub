@@ -35,6 +35,8 @@ void main() {
     // );
 
     test('Testing CheckNetworkConnectivity method', () async {
+      when(mockConnectivity.checkConnectivity())
+          .thenAnswer((_) async => ConnectivityResult.wifi);
       expect(
         await connectivityProvider.checkNetworkConnectivity(
             connectivity: mockConnectivity),
