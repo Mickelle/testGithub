@@ -22,30 +22,33 @@ void main() {
     late ConnectivityProvider connectivityProvider;
 
     setUp(() {
-      var stream = MockStream();
-      when(stream.first)
-          .thenAnswer((_) => Future.value(ConnectivityResult.mobile));
-      print(stream.first);
+      // var stream = MockStream();
+      // when(stream.first)
+      //     .thenAnswer((_) => Future.value(ConnectivityResult.mobile));
+      // print(stream.first);
 
-      when(stream.listen(any)).thenAnswer((Invocation invocation) {
-        var callback = invocation.positionalArguments.single;
-        callback(ConnectivityResult.mobile);
-        callback(ConnectivityResult.mobile);
-        callback(ConnectivityResult.mobile);
-      });
+      // when(stream.listen(any)).thenAnswer((Invocation invocation) {
+      //   var callback = invocation.positionalArguments.single;
+      //   callback(ConnectivityResult.mobile);
+      //   callback(ConnectivityResult.mobile);
+      //   callback(ConnectivityResult.mobile);
+      //   return callback;
+      // });
 
-      stream.listen((e) async => print(e));
+      // stream.listen((e) async => print(e));
 
       mockConnectivity = MockConnectivity();
       when(mockConnectivity.checkConnectivity())
           .thenAnswer((_) async => ConnectivityResult.wifi);
 
-      // when(mockConnectivity.onConnectivityChanged)
-      //     .thenAnswer(const Stream<ConnectivityResult>.empty());
-
-      // when(mockConnectivity.onConnectivityChanged.listen((event) {}))
-      //     .thenAnswer(
-      //         Stream<ConnectivityResult>.empty() as Stream<ConnectivityResult>);
+      when(mockConnectivity.onConnectivityChanged.listen((event) {}))
+          .thenAnswer((Invocation invocation) {
+        var callback = invocation.positionalArguments.single;
+        callback(ConnectivityResult.mobile);
+        callback(ConnectivityResult.mobile);
+        callback(ConnectivityResult.mobile);
+        return callback;
+      });
 
       connectivityProvider =
           ConnectivityProvider(connectivity: mockConnectivity);
