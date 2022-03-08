@@ -19,7 +19,8 @@ void main() {
     setUp(() {
       mockConnectivity = MockConnectivity();
       // mockConnectivityProvider = MockConnectivityProvider();
-      // connectivityProvider = ConnectivityProvider();
+      connectivityProvider =
+          ConnectivityProvider(connectivity: mockConnectivity);
     });
 
     test('Test ddd', () async {
