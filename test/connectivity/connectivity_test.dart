@@ -13,11 +13,12 @@ void main() {
 
   group('Test for connectivity', () {
     late MockConnectivity mockConnectivity;
-    // late MockConnectivityProvider mockConnectivityProvider;
     late ConnectivityProvider connectivityProvider;
 
     setUp(() {
       mockConnectivity = MockConnectivity();
+      when(mockConnectivity.checkConnectivity())
+          .thenAnswer((_) async => ConnectivityResult.wifi);
       // mockConnectivityProvider = MockConnectivityProvider();
       connectivityProvider =
           ConnectivityProvider(connectivity: mockConnectivity);
