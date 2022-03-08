@@ -4,20 +4,17 @@ import 'package:mockito/annotations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:test_flutter_circle_ci/providers/connectivity_provider.dart';
-import 'connectivity_test.mocks.dart';
-import 'package:provider/provider.dart';
 
-@GenerateMocks([Connectivity, ConnectivityProvider])
+import 'package:provider/provider.dart';
+import 'package:test_flutter_circle_ci/providers/providers.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  MockConnectivity mockConnectivity = MockConnectivity();
+  // Theme mockConnectivity = MockConnectivity();
 
   test('Test connectivity', () async {
-    when(mockConnectivity.checkConnectivity()).thenAnswer((value) async {
-      return ConnectivityResult.mobile;
-    });
     // ConnectivityProvider connectivityProvider = ConnectivityProvider();
-
+    ThemeProvider themeProvider = ThemeProvider();
     //
     expect(1 + 1, 2);
   });
