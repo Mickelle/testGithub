@@ -16,7 +16,7 @@ void main() {
     when(mockConnectivity.checkConnectivity()).thenAnswer((value) async {
       return ConnectivityResult.mobile;
     });
-    // ConnectivityProvider connectivityProvider = ConnectivityProvider();
+    ConnectivityProvider connectivityProvider = ConnectivityProvider();
     // await tester.pumpWidget(
     //   Provider<ConnectivityProvider>(
     //     child: main(),
