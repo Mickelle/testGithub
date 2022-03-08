@@ -44,19 +44,19 @@ void main() {
       );
     });
 
-    // test('Testing all the getters', () {
-    //   final ConnectivityProvider connectivityProvider = ConnectivityProvider();
+    test('Testing all the getters', () {
+      final ConnectivityProvider connectivityProvider = ConnectivityProvider();
 
-    //   expect(connectivityProvider.getIsConnected, isFalse);
-    //   expect(connectivityProvider.getShowSnackBar, isFalse);
-    //   expect(connectivityProvider.getSnackbarKey, isA<GlobalKey>());
-    //   expect(connectivityProvider.getConnectivity, isA<Connectivity>());
-    //   expect(connectivityProvider.getResult, isA<ConnectivityResult>());
-    // });
+      expect(connectivityProvider.getIsConnected, isFalse);
+      expect(connectivityProvider.getShowSnackBar, isFalse);
+      expect(connectivityProvider.getSnackbarKey, isA<GlobalKey>());
+      expect(connectivityProvider.getConnectivity, isA<Connectivity>());
+      expect(connectivityProvider.getResult, isA<ConnectivityResult>());
+    });
 
-    // test('Clears/closes the stream subscription', () {
-    //   connectivityProvider.clearConnectivityStream();
-    //   expect(connectivityProvider.clearConnectivityStream, isA<void>());
-    // });
+    test('Clears/closes the stream subscription', () {
+      connectivityProvider.clearConnectivityStream();
+      expect(connectivityProvider.clearConnectivityStream, isA<void>());
+    });
   });
 }
