@@ -67,7 +67,9 @@ class ConnectivityProvider extends ChangeNotifier {
       notifyListeners();
       return _result;
     } on PlatformException catch (e) {
+      Exception('PlatformException Occurred: ${e.toString()}');
     } on SocketException catch (e) {
+      Exception('SocketException Occurred: ${e.toString()}');
     } on Exception catch (e) {
       Exception('Exception Occurred: ${e.toString()}');
     }
