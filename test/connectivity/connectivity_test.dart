@@ -10,12 +10,21 @@ import 'package:provider/provider.dart';
 @GenerateMocks([Connectivity, ConnectivityProvider])
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  MockConnectivity mockConnectivity = MockConnectivity();
+  // MockConnectivity mockConnectivity = MockConnectivity();
+  late MockConnectivity mockConnectivity;
+  // late MockConnectivityProvider mockConnectivityProvider;
+  late ConnectivityProvider connectivityProvider;
+
+  setUp(() {
+    mockConnectivity = MockConnectivity();
+    // mockConnectivityProvider = MockConnectivityProvider();
+    connectivityProvider = ConnectivityProvider();
+  });
 
   test('Test connectivity', () async {
-    when(mockConnectivity.checkConnectivity()).thenAnswer((value) async {
-      return ConnectivityResult.mobile;
-    });
+    // when(mockConnectivity.checkConnectivity()).thenAnswer((value) async {
+    //   return ConnectivityResult.mobile;
+    // });
     // ConnectivityProvider connectivityProvider = ConnectivityProvider();
 
     //
