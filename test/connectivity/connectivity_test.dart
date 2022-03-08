@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
@@ -21,26 +19,34 @@ void main() {
       mockConnectivity = MockConnectivity();
       when(mockConnectivity.checkConnectivity())
           .thenAnswer((_) async => ConnectivityResult.wifi);
+      // mockConnectivityProvider = MockConnectivityProvider();
       connectivityProvider =
           ConnectivityProvider(connectivity: mockConnectivity);
     });
 
-    test(
-      'Listening network connectivity changes',
-      () async {
-        expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
-      },
-    );
+    test('Test ddd', () async {
+      expect(1 + 1, 2);
+    });
+    // test(
+    //   'Listening network connectivity changes',
+    //   () async {
+    //     expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
+    //   },
+    // );
 
-    // test('Testing CheckNetworkConnectivity method', () async {
-    //   expect(
-    //     await connectivityProvider.checkNetworkConnectivity(
-    //         connectivity: mockConnectivity),
-    //     isA<ConnectivityResult>(),
-    //   );
-    // });
+    test('Testing CheckNetworkConnectivity method', () async {
+      when(mockConnectivity.checkConnectivity())
+          .thenAnswer((_) async => ConnectivityResult.wifi);
+      expect(
+        await connectivityProvider.checkNetworkConnectivity(
+            connectivity: mockConnectivity),
+        isA<ConnectivityResult>(),
+      );
+    });
 
     test('Testing all the getters', () {
+      // final ConnectivityProvider connectivityProvider = ConnectivityProvider();
+
       expect(connectivityProvider.getIsConnected, isTrue);
       expect(connectivityProvider.getShowSnackBar, isFalse);
       expect(connectivityProvider.getSnackbarKey, isA<GlobalKey>());
