@@ -1,6 +1,8 @@
 version: 2.1
 jobs:
   build:
+    macos:
+      xcode: 12.5.1 # indicate your selected version of Xcode
     docker:
       - image: cirrusci/flutter
     steps:
