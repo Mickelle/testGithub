@@ -21,23 +21,12 @@ void main() {
       mockConnectivity = MockConnectivity();
       when(mockConnectivity.checkConnectivity())
           .thenAnswer((_) async => ConnectivityResult.wifi);
-      // mockConnectivityProvider = MockConnectivityProvider();
+
       connectivityProvider =
           ConnectivityProvider(connectivity: mockConnectivity);
     });
 
-    test(
-      'Listening network connectivity changes',
-      () async {
-        expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
-      },
-    );
-
     test('Testing CheckNetworkConnectivity method', () async {
-      when(mockConnectivity.checkConnectivity())
-          .thenAnswer((_) async => ConnectivityResult.wifi);
-      // when(mockConnectivity.onConnectivityChanged.listen).thenAnswer(StreamSubscription<ConnectivityResult>)
-
       expect(
         await connectivityProvider.checkNetworkConnectivity(
             connectivity: mockConnectivity),
