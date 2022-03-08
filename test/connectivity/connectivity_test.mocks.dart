@@ -94,12 +94,6 @@ class MockConnectivityProvider extends _i1.Mock
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
   @override
-  void listenNetworkConnectivity({_i3.Connectivity? connectivity}) =>
-      super.noSuchMethod(
-          Invocation.method(
-              #listenNetworkConnectivity, [], {#connectivity: connectivity}),
-          returnValueForMissingStub: null);
-  @override
   _i4.Future<_i5.ConnectivityResult> checkNetworkConnectivity(
           {_i3.Connectivity? connectivity}) =>
       (super.noSuchMethod(
