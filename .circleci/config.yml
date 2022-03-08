@@ -8,6 +8,8 @@ jobs:
       
       # - run: flutter doctor
       # - run: flutter analyze
+      - run: flutter pub get
+      - run: echo "Finished Running pub get"
       - run: flutter pub run build_runner build
       - run: echo "Finished Running build_runner"
       - run: flutter test
