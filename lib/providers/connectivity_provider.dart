@@ -24,12 +24,12 @@ class ConnectivityProvider extends ChangeNotifier {
   final GlobalKey<ScaffoldMessengerState> _snackbarKey = scaffoldMessengerKey;
 
   /// Constructor
-  ConnectivityProvider({this.context}) {
+  ConnectivityProvider({this.context, Connectivity? connectivity}) {
     /// Check initial internet connection
-    checkNetworkConnectivity();
+    checkNetworkConnectivity(connectivity: connectivity);
 
     /// Subscribe for listening changes in connectivity stream
-    // listenNetworkConnectivity();
+    listenNetworkConnectivity(connectivity: connectivity);
   }
 
   // Getters
@@ -42,17 +42,17 @@ class ConnectivityProvider extends ChangeNotifier {
 
   /// This method will listen to network changes and shows snack
   /// message as network toggles
-  // void listenNetworkConnectivity({Connectivity? connectivity}) {
-  //   connectivity ??= Connectivity();
+  void listenNetworkConnectivity({Connectivity? connectivity}) {
+    connectivity ??= Connectivity();
 
-  //   _connectivitySubscription = connectivity.onConnectivityChanged.listen(
-  //     (ConnectivityResult result) {
-  //       updateConnectionStatus(result);
-  //       _showSnackBar = true;
-  //       notifyListeners();
-  //     },
-  //   );
-  // }
+    _connectivitySubscription = connectivity.onConnectivityChanged.listen(
+      (ConnectivityResult result) {
+        updateConnectionStatus(result);
+        _showSnackBar = true;
+        notifyListeners();
+      },
+    );
+  }
 
   /// This method check the initial internet connection
   Future<ConnectivityResult> checkNetworkConnectivity({
