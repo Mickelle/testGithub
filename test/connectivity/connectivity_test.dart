@@ -12,12 +12,12 @@ import 'package:test_flutter_circle_ci/main.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MockConnectivity mockConnectivity = MockConnectivity();
-  ConnectivityProvider connectivityProvider = ConnectivityProvider();
+
   test('Test connectivity', () async {
     when(mockConnectivity.checkConnectivity()).thenAnswer((value) async {
       return ConnectivityResult.mobile;
     });
-
+    ConnectivityProvider connectivityProvider = ConnectivityProvider();
     // await tester.pumpWidget(
     //   Provider<ConnectivityProvider>(
     //     child: main(),
