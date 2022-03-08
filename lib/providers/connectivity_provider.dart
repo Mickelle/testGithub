@@ -29,7 +29,7 @@ class ConnectivityProvider extends ChangeNotifier {
     checkNetworkConnectivity(connectivity: connectivity);
 
     /// Subscribe for listening changes in connectivity stream
-    // listenNetworkConnectivity(connectivity: connectivity);
+    listenNetworkConnectivity();
   }
 
   // Getters
@@ -47,6 +47,7 @@ class ConnectivityProvider extends ChangeNotifier {
 
     _connectivitySubscription = connectivity.onConnectivityChanged.listen(
       (ConnectivityResult result) {
+        // appLogger.i('Listening Network Stream');
         updateConnectionStatus(result);
         _showSnackBar = true;
         notifyListeners();
@@ -61,16 +62,18 @@ class ConnectivityProvider extends ChangeNotifier {
     connectivity ??= Connectivity();
 
     try {
-      _result = await _connectivity.checkConnectivity();
-
+      // appLogger.i('Checking Network Connectivity...');
+      _result = await connectivity.checkConnectivity();
+      // appLogger.i('Connected to $_result');
       updateConnectionStatus(_result);
       notifyListeners();
       return _result;
     } on PlatformException catch (e) {
-      Exception('PlatformException Occurred: ${e.toString()}');
+      // appLogger.e('Platform Exception Occurred: ${e.toString()}');
     } on SocketException catch (e) {
-      Exception('SocketException Occurred: ${e.toString()}');
+      // appLogger.e('Socket Exception Occurred: ${e.toString()}');
     } on Exception catch (e) {
+      // appLogger.e('Exception Occurred: ${e.toString()}');
       Exception('Exception Occurred: ${e.toString()}');
     }
     return _result;
@@ -112,13 +115,13 @@ class ConnectivityProvider extends ChangeNotifier {
         content: Text(
           message,
           style: const TextStyle(
-            color: Colors.amber,
+            color: Colors.black,
             fontFamily: 'Roboto-Regular',
             letterSpacing: 0.4,
           ),
         ),
         duration: Duration(seconds: status ? 2 : 4),
-        backgroundColor: status ? Colors.red : Colors.black,
+        backgroundColor: status ? Colors.black : Colors.black,
       ),
     );
   }
