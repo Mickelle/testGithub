@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:test_flutter_circle_ci/providers/connectivity_provider.dart';
-import 'connectivity_test.mocks.dart';
+// import 'connectivity_test.mocks.dart';
 
 import 'package:mockito/mockito.dart';
 
@@ -22,6 +22,10 @@ void main() {
     late ConnectivityProvider connectivityProvider;
 
     setUp(() {
+      mockConnectivity = MockConnectivity();
+      // when(mockConnectivity.checkConnectivity())
+      //     .thenAnswer((_) async => ConnectivityResult.wifi);
+
       // var stream = MockStream();
       // when(stream.first)
       //     .thenAnswer((_) => Future.value(ConnectivityResult.mobile));
@@ -37,18 +41,24 @@ void main() {
 
       // stream.listen((e) async => print(e));
 
-      mockConnectivity = MockConnectivity();
-      when(mockConnectivity.checkConnectivity())
-          .thenAnswer((_) async => ConnectivityResult.wifi);
+      // const xx = Stream<ConnectivityResult>.fromFutures([
+      //   Future.value(ConnectivityResult.wifi),
+      //   Future.value(ConnectivityResult.none),
+      //   Future.value(ConnectivityResult.mobile)
+      // ]).asyncMap((data) async {
+      //   await Future.delayed(const Duration(seconds: 1));
+      //   return data;
+      // });
 
-      when(mockConnectivity.onConnectivityChanged.listen((event) {}))
-          .thenAnswer((Invocation invocation) {
-        var callback = invocation.positionalArguments.single;
-        callback(ConnectivityResult.mobile);
-        callback(ConnectivityResult.mobile);
-        callback(ConnectivityResult.mobile);
-        return callback;
-      });
+      // when(mockConnectivity.onConnectivityChanged)
+      //     .thenAnswer(Stream<ConnectivityResult>.fromFutures([
+      //   Future.value(ConnectivityResult.wifi),
+      //   Future.value(ConnectivityResult.none),
+      //   Future.value(ConnectivityResult.mobile)
+      // ]).asyncMap((data) async {
+      //   await Future.delayed(const Duration(seconds: 1));
+      //   return data;
+      // }););
 
       connectivityProvider =
           ConnectivityProvider(connectivity: mockConnectivity);
@@ -88,4 +98,51 @@ void main() {
       expect(connectivityProvider.clearConnectivityStream, isA<void>());
     });
   });
+}
+
+enum ConnectivityCase { CASE_ERROR, CASE_SUCCESS }
+
+class MockConnectivity implements Connectivity {
+  var connectivityCase = ConnectivityCase.CASE_SUCCESS;
+
+  Stream<ConnectivityResult>? _onConnectivityChanged;
+
+  @override
+  Future<ConnectivityResult> checkConnectivity() {
+    if (connectivityCase == ConnectivityCase.CASE_SUCCESS) {
+      return Future.value(ConnectivityResult.wifi);
+    } else {
+      throw Error();
+    }
+  }
+
+  @override
+  Stream<ConnectivityResult> get onConnectivityChanged {
+    if (_onConnectivityChanged == null) {
+      _onConnectivityChanged = Stream<ConnectivityResult>.fromFutures([
+        Future.value(ConnectivityResult.wifi),
+        Future.value(ConnectivityResult.none),
+        Future.value(ConnectivityResult.mobile)
+      ]).asyncMap((data) async {
+        await Future.delayed(const Duration(seconds: 1));
+        return data;
+      });
+    }
+    return _onConnectivityChanged!;
+  }
+
+  @override
+  Future<String> getWifiBSSID() {
+    return Future.value("");
+  }
+
+  @override
+  Future<String> getWifiIP() {
+    return Future.value("");
+  }
+
+  @override
+  Future<String> getWifiName() {
+    return Future.value("");
+  }
 }
