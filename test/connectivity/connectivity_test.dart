@@ -26,13 +26,13 @@ void main() {
           ConnectivityProvider(connectivity: mockConnectivity);
     });
 
-    test('Testing CheckNetworkConnectivity method', () async {
-      expect(
-        await connectivityProvider.checkNetworkConnectivity(
-            connectivity: mockConnectivity),
-        isA<ConnectivityResult>(),
-      );
-    });
+    // test('Testing CheckNetworkConnectivity method', () async {
+    //   expect(
+    //     await connectivityProvider.checkNetworkConnectivity(
+    //         connectivity: mockConnectivity),
+    //     isA<ConnectivityResult>(),
+    //   );
+    // });
 
     test('Testing all the getters', () {
       expect(connectivityProvider.getIsConnected, isTrue);
