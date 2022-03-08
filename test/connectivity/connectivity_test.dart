@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
@@ -19,7 +21,17 @@ void main() {
       mockConnectivity = MockConnectivity();
       when(mockConnectivity.checkConnectivity())
           .thenAnswer((_) async => ConnectivityResult.wifi);
+
+      when(mockConnectivity.onConnectivityChanged.listen((event) {}))
+          .thenAnswer((Invocation invocation) {
+        var callback = invocation.positionalArguments.single;
+        callback(ConnectivityResult.wifi);
+        callback(ConnectivityResult.wifi);
+        callback(ConnectivityResult.wifi);
+        return callback(ConnectivityResult.wifi);
+      });
       // mockConnectivityProvider = MockConnectivityProvider();
+
       connectivityProvider =
           ConnectivityProvider(connectivity: mockConnectivity);
     });
