@@ -9,6 +9,10 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:test_flutter_circle_ci/providers/connectivity_provider.dart';
 import 'connectivity_test.mocks.dart';
 
+import 'package:mockito/mockito.dart';
+
+class MockStream extends Mock implements Stream<ConnectivityResult> {}
+
 @GenerateMocks([Connectivity, ConnectivityProvider])
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,19 +22,30 @@ void main() {
     late ConnectivityProvider connectivityProvider;
 
     setUp(() {
+      var stream = MockStream();
+      when(stream.first)
+          .thenAnswer((_) => Future.value(ConnectivityResult.mobile));
+      print(stream.first);
+
+      when(stream.listen(any)).thenAnswer((Invocation invocation) {
+        var callback = invocation.positionalArguments.single;
+        callback(ConnectivityResult.mobile);
+        callback(ConnectivityResult.mobile);
+        callback(ConnectivityResult.mobile);
+      });
+
+      stream.listen((e) async => print(e));
+
       mockConnectivity = MockConnectivity();
       when(mockConnectivity.checkConnectivity())
           .thenAnswer((_) async => ConnectivityResult.wifi);
 
-      when(mockConnectivity.onConnectivityChanged.listen((event) {}))
-          .thenAnswer((Invocation invocation) {
-        var callback = invocation.positionalArguments.single;
-        callback(ConnectivityResult.wifi);
-        callback(ConnectivityResult.wifi);
-        callback(ConnectivityResult.wifi);
-        return callback(ConnectivityResult.wifi);
-      });
-      // mockConnectivityProvider = MockConnectivityProvider();
+      // when(mockConnectivity.onConnectivityChanged)
+      //     .thenAnswer(const Stream<ConnectivityResult>.empty());
+
+      // when(mockConnectivity.onConnectivityChanged.listen((event) {}))
+      //     .thenAnswer(
+      //         Stream<ConnectivityResult>.empty() as Stream<ConnectivityResult>);
 
       connectivityProvider =
           ConnectivityProvider(connectivity: mockConnectivity);
