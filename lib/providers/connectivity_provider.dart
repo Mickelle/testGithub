@@ -29,7 +29,7 @@ class ConnectivityProvider extends ChangeNotifier {
     checkNetworkConnectivity();
 
     /// Subscribe for listening changes in connectivity stream
-    listenNetworkConnectivity();
+    // listenNetworkConnectivity();
   }
 
   // Getters
@@ -42,17 +42,17 @@ class ConnectivityProvider extends ChangeNotifier {
 
   /// This method will listen to network changes and shows snack
   /// message as network toggles
-  void listenNetworkConnectivity({Connectivity? connectivity}) {
-    connectivity ??= Connectivity();
+  // void listenNetworkConnectivity({Connectivity? connectivity}) {
+  //   connectivity ??= Connectivity();
 
-    _connectivitySubscription = connectivity.onConnectivityChanged.listen(
-      (ConnectivityResult result) {
-        updateConnectionStatus(result);
-        _showSnackBar = true;
-        notifyListeners();
-      },
-    );
-  }
+  //   _connectivitySubscription = connectivity.onConnectivityChanged.listen(
+  //     (ConnectivityResult result) {
+  //       updateConnectionStatus(result);
+  //       _showSnackBar = true;
+  //       notifyListeners();
+  //     },
+  //   );
+  // }
 
   /// This method check the initial internet connection
   Future<ConnectivityResult> checkNetworkConnectivity({
