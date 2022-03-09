@@ -26,40 +26,6 @@ void main() {
       when(mockConnectivity.checkConnectivity())
           .thenAnswer((_) async => ConnectivityResult.wifi);
 
-      // var stream = MockStream();
-      // when(stream.first)
-      //     .thenAnswer((_) => Future.value(ConnectivityResult.mobile));
-      // print(stream.first);
-
-      // when(stream.listen(any)).thenAnswer((Invocation invocation) {
-      //   var callback = invocation.positionalArguments.single;
-      //   callback(ConnectivityResult.mobile);
-      //   callback(ConnectivityResult.mobile);
-      //   callback(ConnectivityResult.mobile);
-      //   return callback;
-      // });
-
-      // stream.listen((e) async => print(e));
-
-      // const xx = Stream<ConnectivityResult>.fromFutures([
-      //   Future.value(ConnectivityResult.wifi),
-      //   Future.value(ConnectivityResult.none),
-      //   Future.value(ConnectivityResult.mobile)
-      // ]).asyncMap((data) async {
-      //   await Future.delayed(const Duration(seconds: 1));
-      //   return data;
-      // });
-
-      // when(mockConnectivity.onConnectivityChanged)
-      //     .thenAnswer((Stream<ConnectivityResult>.fromFutures([
-      //   Future.value(ConnectivityResult.wifi),
-      //   Future.value(ConnectivityResult.none),
-      //   Future.value(ConnectivityResult.mobile)
-      // ]).asyncMap((data) async {
-      //   await Future.delayed(const Duration(seconds: 1));
-      //   return data;
-      // }););
-
       when(mockConnectivity.onConnectivityChanged).thenAnswer(
           (realInvocation) => Stream<ConnectivityResult>.fromFutures([
                 Future.value(ConnectivityResult.wifi),
@@ -78,12 +44,12 @@ void main() {
       expect(1 + 1, 2);
     });
 
-    // test(
-    //   'Listening network connectivity changes',
-    //   () async {
-    //     expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
-    //   },
-    // );
+    test(
+      'Listening network connectivity changes',
+      () async {
+        expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
+      },
+    );
 
     test('Testing CheckNetworkConnectivity method', () async {
       expect(
