@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:test_flutter_circle_ci/providers/connectivity_provider.dart';
-// import 'connectivity_test.mocks.dart';
+import 'connectivity_test.mocks.dart';
 
 import 'package:mockito/mockito.dart';
 
@@ -23,8 +23,8 @@ void main() {
 
     setUp(() {
       mockConnectivity = MockConnectivity();
-      // when(mockConnectivity.checkConnectivity())
-      //     .thenAnswer((_) async => ConnectivityResult.wifi);
+      when(mockConnectivity.checkConnectivity())
+          .thenAnswer((_) async => ConnectivityResult.wifi);
 
       // var stream = MockStream();
       // when(stream.first)
@@ -51,7 +51,7 @@ void main() {
       // });
 
       // when(mockConnectivity.onConnectivityChanged)
-      //     .thenAnswer(Stream<ConnectivityResult>.fromFutures([
+      //     .thenAnswer((Stream<ConnectivityResult>.fromFutures([
       //   Future.value(ConnectivityResult.wifi),
       //   Future.value(ConnectivityResult.none),
       //   Future.value(ConnectivityResult.mobile)
@@ -68,12 +68,12 @@ void main() {
       expect(1 + 1, 2);
     });
 
-    test(
-      'Listening network connectivity changes',
-      () async {
-        expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
-      },
-    );
+    // test(
+    //   'Listening network connectivity changes',
+    //   () async {
+    //     expect(connectivityProvider.listenNetworkConnectivity, isA<void>());
+    //   },
+    // );
 
     test('Testing CheckNetworkConnectivity method', () async {
       expect(
@@ -102,7 +102,7 @@ void main() {
 
 enum ConnectivityCase { CASE_ERROR, CASE_SUCCESS }
 
-class MockConnectivity implements Connectivity {
+class CustomMockConnectivity implements Connectivity {
   var connectivityCase = ConnectivityCase.CASE_SUCCESS;
 
   Stream<ConnectivityResult>? _onConnectivityChanged;

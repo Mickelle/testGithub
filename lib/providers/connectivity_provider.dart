@@ -29,7 +29,7 @@ class ConnectivityProvider extends ChangeNotifier {
     checkNetworkConnectivity(connectivity: connectivity);
 
     /// Subscribe for listening changes in connectivity stream
-    listenNetworkConnectivity();
+    listenNetworkConnectivity(connectivity: connectivity);
   }
 
   // Getters
