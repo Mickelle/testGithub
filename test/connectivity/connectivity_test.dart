@@ -60,6 +60,16 @@ void main() {
       //   return data;
       // }););
 
+      when(mockConnectivity.onConnectivityChanged).thenAnswer(
+          (realInvocation) => Stream<ConnectivityResult>.fromFutures([
+                Future.value(ConnectivityResult.wifi),
+                Future.value(ConnectivityResult.none),
+                Future.value(ConnectivityResult.mobile)
+              ]).asyncMap((data) async {
+                await Future.delayed(const Duration(seconds: 1));
+                return data;
+              }));
+
       connectivityProvider =
           ConnectivityProvider(connectivity: mockConnectivity);
     });
