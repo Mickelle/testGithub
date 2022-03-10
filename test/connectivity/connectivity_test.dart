@@ -9,10 +9,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:test_flutter_circle_ci/providers/connectivity_provider.dart';
 import 'connectivity_test.mocks.dart';
 
-import 'package:mockito/mockito.dart';
-
-class MockStream extends Mock implements Stream<ConnectivityResult> {}
-
 @GenerateMocks([Connectivity, ConnectivityProvider])
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

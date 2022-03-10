@@ -12,7 +12,11 @@ jobs:
       # - run: echo "Finished Running pub get"
       # - run: flutter pub run build_runner build
       # - run: echo "Finished Running build_runner"
-      - run: flutter test
+      - run: flutter test --coverage
+      - store_test_results:
+          path: ./coverage/lcov.info
+      - store_artifacts:
+          path: ./coverage/lcov.info
       - run: echo "Finished Running Tests"
     #   - run: flutter -v build apk
       - when:
