@@ -5,7 +5,7 @@ jobs:
       - image: cirrusci/flutter
     steps:
       - checkout
-      
+
       # - run: flutter doctor
       # - run: flutter analyze
       # - run: flutter pub get
@@ -15,9 +15,11 @@ jobs:
       - run: flutter test --coverage
       - run: genhtml coverage/lcov.info -o coverage/html
       - store_test_results:
-          path: ./coverage/*
+          path: coverage/
+          destination: coverageResult/*
       - store_artifacts:
-          path: ./coverage/*
+          path: coverage/*
+          destination: coverage/*
       - run: echo "Finished Running Tests"
     #   - run: flutter -v build apk
       - when:
