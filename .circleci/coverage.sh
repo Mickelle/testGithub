@@ -17,5 +17,5 @@ if [ "$(echo "${percentageRate} < $MIN_COVERAGE_PERC" | bc)" -eq 1 ]; then
     exit 1
 else
     printf "${GREEN}Coverage rate - ${percentageRate} is fine 👍. Build continue...\n"
-    exit 1
+    exit 0
 fi
