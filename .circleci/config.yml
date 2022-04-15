@@ -20,6 +20,8 @@ jobs:
       - store_artifacts:
           path: coverage/
           destination: coverage/
+      commands:
+        - ./coverage.sh
       - run: echo "Finished Running Tests"
     #   - run: flutter -v build apk
       - when:
