@@ -21,7 +21,7 @@ jobs:
           path: coverage/
           destination: coverage/
       - run:
-          command: ./.circleci/coverage.sh ../coverage/lcov.info
+          command: ./.circleci/coverage.sh ./coverage/lcov.info
       - run: echo "Finished Running Tests"
     #   - run: flutter -v build apk
       - when:
