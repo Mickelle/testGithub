@@ -1,0 +1,41 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cirrusci/flutter
+    steps:
+      - checkout
+
+      # - run: flutter doctor
+      # - run: flutter analyze
+      # - run: flutter pub get
+      # - run: echo "Finished Running pub get"
+      # - run: flutter pub run build_runner build
+      # - run: echo "Finished Running build_runner"
+      - run: flutter test --coverage
+      - run: genhtml coverage/lcov.info -o coverage/html
+      - store_test_results:
+          path: coverage/
+          destination: coverageResult/
+      - store_artifacts:
+          path: coverage/
+          destination: coverage/
+      - run:
+          command: ./.circleci/coverage.sh ./coverage/lcov.info
+      - run: echo "Finished Running Tests"
+    #   - run: flutter -v build apk
+      - when:
+          condition:
+            not: 
+              equal: [ XXXflutter-circlci, << pipeline.git.branch >> ]
+          steps:
+            - run: echo "Not CircleCI << pipeline.git.branch >>"
+            # - run: flutter analyze
+      - when:
+          condition:
+            equal: [ flutter-circleci, << pipeline.git.branch >> ]
+          steps:
+            - run: echo << pipeline.git.branch >>
+            # - run: flutter test
+
+# https://stackoverflow.com/questions/50789578/how-can-the-code-coverage-data-from-flutter-tests-be-displayed
